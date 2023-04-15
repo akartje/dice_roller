@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dice Roller</title>
+</head>
+<body>
+    <h1>Dice Roller</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Roll</button>
+    </form>
+    {% if result %}
+        <p>Your roll: {{ result }} on {{ dice }}d{{ sides }}</p>
+        <p>Physical rolls:</p>
+        <ul>
+        {% for i in dice_pool %}
+            <li>Roll: {{ i }}</li>
+        {% endfor %}
+        {% for j in result_pool %}
+            <li>Result: {{ j }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if rolls %}
+        <p>Previous rolls:</p>
+        <ul>
+        {% for roll in rolls %}
+            <li>{{ roll.result }} on {{ roll.timestamp|date:"M d, Y H:i"}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
