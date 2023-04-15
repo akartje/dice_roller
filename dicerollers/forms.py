@@ -9,4 +9,4 @@ OPTION_CHOICES=[
 class DiceRollForm(forms.Form):
     dice = forms.IntegerField(min_value=1, max_value=100, label='Number of dice to roll')
     sides = forms.IntegerField(min_value=1, max_value=100, label='Number of sides on each die')
-    option = forms.CharField(label='Any additional effects on this role?', widget=forms.Select(choices=OPTION_CHOICES))
+    option = forms.CharField(label='Any additional effects on this roll?', widget=forms.Select(choices=OPTION_CHOICES))
