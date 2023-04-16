@@ -12,15 +12,12 @@
     </form>
     {% if result %}
         <p>Your roll: {{ result }} on {{ dice }}d{{ sides }}</p>
-        <p>Physical rolls:</p>
         <ul>
-        {% for i in dice_pool %}
-            <li>Roll: {{ i }}</li>
-        {% endfor %}
-        {% for j in result_pool %}
-            <li>Result: {{ j }}</li>
+        {% for i, j in zipped_pool %}
+            <li>Roll: {{ i }}, Result: {{ j }}</li>
         {% endfor %}
         </ul>
+        <p> {{ option }} increased your result by {{ amount_option_gained }} </p>
     {% endif %}
     {% if rolls %}
         <p>Previous rolls:</p>
