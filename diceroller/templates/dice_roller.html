@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dice Roller</title>
+</head>
+<body>
+    <h1>Dice Roller</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Roll</button>
+    </form>
+    {% if result %}
+            {% if crit %}
+                <p>Your roll: {{ result }} on {{ dice }}d{{ sides }} + {{ modifier }} with a critical hit!</p>
+            {%else%}
+                <p>Your roll: {{ result }} on {{ dice }}d{{ sides }} + {{ modifier }}</p>
+            {%endif%}
+        <ul>
+        {% for i, j in zipped_pool %}
+            <li>Roll: {{ i }}, Result: {{ j }}</li>
+        {% endfor %}
+        </ul>
+        <p> {{ option }} increased your result by {{ amount_option_gained }} </p>
+    {% endif %}
+    {% if rolls %}
+        <p>Previous rolls:</p>
+        <ul>
+        {% for roll in rolls %}
+            <li>{{ roll.result }} on {{ roll.timestamp|date:"M d, Y H:i"}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
